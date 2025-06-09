@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Government Officer Dashboard</title>
+    <style>
+        img {
+            margin: 10px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Detected Potholes</h2>
+    <div style="display: flex; flex-wrap: wrap;">
+        {% for img in images %}
+        <div style="margin: 10px;">
+            <img src="/runs/{{ img }}" alt="Detection" width="300">
+
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>

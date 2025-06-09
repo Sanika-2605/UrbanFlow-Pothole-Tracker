@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pothole Detection</title>
+    <link rel="stylesheet" href="/api/static/styles.css">
+</head>
+
+<body>
+    <h1>Upload Road Image</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="image" id="image" required />
+        <button type="submit">Upload</button>
+    </form>
+    <br>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append("image", document.getElementById("image").files[0]);
+
+            const response = await fetch("/detect/", {
+                method: "POST",
+                body: formData
+            });
+
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            document.getElementById("result").innerHTML = `<h3>Detected Image:</h3><img src="${url}" width="500">`;
+        });
+    </script>
+</body>
+
+</html>
